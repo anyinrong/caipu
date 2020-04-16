@@ -1,0 +1,10 @@
+
+.grid.data-v-3063c919 {
+	padding-top: 10px;
+}
+.grid-c-12.data-v-3063c919 {
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+

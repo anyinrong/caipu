@@ -1,0 +1,49 @@
+{
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "印记菜谱",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/classify/classify",
+			"style": {
+				"navigationBarTitleText": "分类",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"enablePullDownRefresh": true
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "看图",
+		"navigationBarBackgroundColor": "#333333",
+		"backgroundColor": "#EFEFEF"
+	},
+	"tabBar": {
+		"color": "#444444",
+		"selectedColor": "#FF80AB",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/index-0.png",
+				"selectedIconPath": "static/index-1.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/classify/classify",
+				"iconPath": "static/hot-0.png",
+				"selectedIconPath": "static/hot-1.png",
+				"text": "分类"
+			}
+		]
+	}
+}
