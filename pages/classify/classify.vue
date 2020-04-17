@@ -3,14 +3,21 @@
 		<searchView></searchView>
 		<view class="content" :style="'height:' + (screenHeight-44) + 'px'">
 			<scroll-view scroll-y="true" class="scroll-lefy">
-				<view class="scroll-lefy-item select">热门</view>
-				<view class="scroll-lefy-item">精选</view>
+				<view class="scroll-lefy-item"
+						:class="{select:index == i}"
+						v-for="(item,i) in lists" 
+						:key='item.classid'
+						@click="getItem(item,i)">
+						{{ item.name }}
+				</view>
 			</scroll-view>
 			<scroll-view scroll-y="true" class="scroll-right">
-				<view class="scroll-right-item">家常菜</view>
-				<view class="scroll-right-item">家常菜</view>
-				<view class="scroll-right-item">家常菜</view>
-				<view class="scroll-right-item">家常菜</view>
+				<view class="scroll-right-item" 
+					v-for="(item,i) in items"
+					:key='item.classid'
+					@click="goSearch(item)">
+					{{ item.name }}
+				</view>
 			</scroll-view>
 		</view>
 	</view>
@@ -22,6 +29,9 @@
 		data() {
 			return {
 				screenHeight: 0,
+				lists: [],
+				items: [],
+				index: 0
 			}
 		},
 		components:{searchView},
@@ -31,10 +41,37 @@
 					console.log(o)
 					this.screenHeight = o.windowHeight;
 				}
-			})
+			});
+			this.getData();
 		},
 		methods: {
-			
+			getData (e) {
+				var t = this;
+				uni.request({
+					url: t.$serverUrl + '/class',
+					data: { 
+						appkey: t.$appkey,
+					},
+					success: (ret) => {
+						if (ret.statusCode !== 200) {
+							console.log('请求失败', ret)
+							return;
+						};
+						const data = ret.data.result;
+						t.lists = data;
+						t.items = data[t.index].list;
+					}
+				});
+			},
+			getItem (item,i) {
+				this.index = i;
+				this.items = item.list;
+			},
+			goSearch (item) {
+				uni.navigateTo({
+					url: '../search/search?value=' + item.name + '&classid=' + item.classid
+				})
+			}
 		}
 	}
 </script>
@@ -51,11 +88,12 @@
 			flex-direction: column;
 			.scroll-lefy-item {
 				width: 100%;
-				height: 64rpx;
-				line-height: 64rpx;
+				height: 68rpx;
+				line-height: 68rpx;
 				text-align: center;
 				color: #666666;
 				&.select {
+					color: #f05b72;
 					border-left: 4rpx solid #f05b72;
 					background-color: #ffffff;
 				}
@@ -63,6 +101,7 @@
 		}
 		.scroll-right {
 			margin: 0 12rpx;
+			padding-bottom: 24rpx;
 			.scroll-right-item {
 				display: inline-block;
 				width: 158rpx;

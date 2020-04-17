@@ -1,0 +1,13 @@
+.swiper.data-v-7bad1511 {
+  width: 100%;
+  height: 326rpx;
+}
+.swiper .swiper-item.data-v-7bad1511 {
+  width: 100%;
+  height: 100%;
+}
+.swiper .swiper-item image.data-v-7bad1511 {
+  width: 100%;
+  height: 100%;
+}
+

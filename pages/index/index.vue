@@ -22,7 +22,7 @@
 		},
 		components:{searchView,swiperView,groomView,goodsView},
 		onLoad(e) {
-			this.getData();
+			// this.getData();
 		},
 		methods: {
 			getData(e) {

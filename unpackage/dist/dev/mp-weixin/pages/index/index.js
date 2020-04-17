@@ -163,7 +163,7 @@ var searcharr = ['白菜', '土豆', '五花肉', '茄子', '西红柿'];var _de
   },
   components: { searchView: searchView, swiperView: swiperView, groomView: groomView, goodsView: goodsView },
   onLoad: function onLoad(e) {
-    this.getData();
+    // this.getData();
   },
   methods: {
     getData: function getData(e) {

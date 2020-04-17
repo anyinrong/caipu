@@ -131,7 +131,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var searchView = function searchView() {__webpack_require__.e(/*! require.ensure | components/search/search */ "components/search/search").then((function () {return resolve(__webpack_require__(/*! @/components/search/search */ 42));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var searchView = function searchView() {__webpack_require__.e(/*! require.ensure | components/search/search */ "components/search/search").then((function () {return resolve(__webpack_require__(/*! @/components/search/search */ 42));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsItemView = function goodsItemView() {__webpack_require__.e(/*! require.ensure | components/goods/item */ "components/goods/item").then((function () {return resolve(__webpack_require__(/*! @/components/goods/item */ 74));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
 
 
 
@@ -165,14 +171,40 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 {
   data: function data() {
-    return {};
-
+    return {
+      searchValue: '',
+      isShow: 0,
+      lists: [] };
 
   },
-  components: { searchView: searchView },
+  components: { searchView: searchView, goodsItemView: goodsItemView },
   onLoad: function onLoad(e) {
+    console.log(e);
+    this.searchValue = e.value;
+    this.getData();
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    getData: function getData(e) {
+      var t = this;
+      uni.request({
+        url: t.$serverUrl + '/search',
+        data: {
+          appkey: t.$appkey,
+          keyword: t.searchValue,
+          num: 60 },
+
+        success: function success(ret) {
+          if (ret.statusCode !== 200) {
+            t.isShow = !0;
+            console.log('请求失败', ret);
+            return;
+          };
+          var data = ret.data.result.list;
+          t.lists = data;
+        } });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

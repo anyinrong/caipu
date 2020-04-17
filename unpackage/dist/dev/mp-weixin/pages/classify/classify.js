@@ -151,10 +151,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
-      screenHeight: 0 };
+      screenHeight: 0,
+      lists: [],
+      items: [],
+      index: 0 };
 
   },
   components: { searchView: searchView },
@@ -165,8 +175,36 @@ __webpack_require__.r(__webpack_exports__);
         _this.screenHeight = o.windowHeight;
       } });
 
+    this.getData();
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    getData: function getData(e) {
+      var t = this;
+      uni.request({
+        url: t.$serverUrl + '/class',
+        data: {
+          appkey: t.$appkey },
+
+        success: function success(ret) {
+          if (ret.statusCode !== 200) {
+            console.log('请求失败', ret);
+            return;
+          };
+          var data = ret.data.result;
+          t.lists = data;
+          t.items = data[t.index].list;
+        } });
+
+    },
+    getItem: function getItem(item, i) {
+      this.index = i;
+      this.items = item.list;
+    },
+    goSearch: function goSearch(item) {
+      uni.navigateTo({
+        url: '../search/search?value=' + item.name + '&classid=' + item.classid });
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

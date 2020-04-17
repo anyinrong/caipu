@@ -19,17 +19,19 @@
 }
 .content .scroll-lefy .scroll-lefy-item.data-v-c0f77cce {
   width: 100%;
-  height: 64rpx;
-  line-height: 64rpx;
+  height: 68rpx;
+  line-height: 68rpx;
   text-align: center;
   color: #666666;
 }
 .content .scroll-lefy .scroll-lefy-item.select.data-v-c0f77cce {
+  color: #f05b72;
   border-left: 4rpx solid #f05b72;
   background-color: #ffffff;
 }
 .content .scroll-right.data-v-c0f77cce {
   margin: 0 12rpx;
+  padding-bottom: 24rpx;
 }
 .content .scroll-right .scroll-right-item.data-v-c0f77cce {
   display: inline-block;
