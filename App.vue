@@ -12,5 +12,5 @@
 	}
 </script>
 <style>
-	@import './common/iconfont.css';
+	/* @import './common/iconfont.css'; */
 </style>

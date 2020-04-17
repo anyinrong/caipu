@@ -1,5 +1,10 @@
 {
   "navigationBarTitleText": "印记菜谱",
   "enablePullDownRefresh": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "search-view": "/components/search/search",
+    "swiper-view": "/components/swiper/swiper",
+    "groom-view": "/components/groom/groom",
+    "goods-view": "/components/goods/goods"
+  }
 }
