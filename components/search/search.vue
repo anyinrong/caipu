@@ -27,7 +27,9 @@
 			searchType: { // 可选字段，有默认值
 			    default: 'text'
 			},
-			inputValue: {}
+			inputValue: { // 可选字段，有默认值
+			    default: ''
+			},
 		},
 		onLoad(e) {},
 		methods: {
