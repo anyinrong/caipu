@@ -1,6 +1,7 @@
 <template>
 	<view class="classify">
-		<searchView></searchView>
+		<searchView searchType='text'></searchView>
+		<shareView></shareView>
 		<view class="content" :style="'height:' + (screenHeight-44) + 'px'">
 			<scroll-view scroll-y="true" class="scroll-lefy">
 				<view class="scroll-lefy-item"
@@ -25,6 +26,7 @@
 
 <script>
 	import searchView from '@/components/search/search';
+	import shareView from '@/components/share/share';
 	export default {
 		data() {
 			return {
@@ -34,7 +36,7 @@
 				index: 0
 			}
 		},
-		components:{searchView},
+		components:{searchView,shareView},
 		onLoad(e) {
 			uni.getSystemInfo({
 				success: (o) => {
@@ -72,6 +74,24 @@
 					url: '../search/search?value=' + item.name + '&classid=' + item.classid
 				})
 			}
+		},
+		onShareAppMessage(res) {
+			if (res.from === 'button') { // 来自页面内分享按钮
+				return {
+					title: '印记菜谱',
+					desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+					imageUrl: require('../../static/xiafan.png'),
+					success: res => {},
+					fail: err => {}
+				}
+			}
+			return {
+				title: '印记菜谱',
+				desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+				imageUrl: require('../../static/xiafan.png'),
+				success: res => {},
+				fail: err => {}
+			}
 		}
 	}
 </script>
@@ -82,15 +102,16 @@
 		font-size: 24rpx;
 		.scroll-lefy {
 			width: 22%;
-			background-color: rgba(0,0,0,0.06);
+			background-color: rgba(0,0,0,0.04);
 			flex-shrink: 0;
 			display: flex;
 			flex-direction: column;
 			.scroll-lefy-item {
 				width: 100%;
-				height: 68rpx;
-				line-height: 68rpx;
+				height: 88rpx;
+				line-height: 88rpx;
 				text-align: center;
+				font-size: 28rpx;
 				color: #666666;
 				&.select {
 					color: #f05b72;

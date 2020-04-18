@@ -3,9 +3,7 @@
 		<view class="search-input" v-if="searchType == 'input'">
 			<view class="input-box">
 				<text class="iconfont icon-sousuo "></text>
-				<input type="text" placeholder="搜索菜谱,食材" placeholder-style="color:#cccccc"
-				 :value="inputValue" 
-				 v-model="modelValue"/>
+				<input type="text" v-model="modelValue" placeholder="搜索菜谱,食材" placeholder-style="color:#cccccc"/>
 			</view>
 			<text class="search-btn" @click="getData(modelValue)">搜索</text>
 		</view>
@@ -56,6 +54,7 @@
 							};
 							const data = ret.data.result.list;
 							this.$parent.$data.lists = data;
+							this.$parent.$data.isShow = 0;
 						}
 					});
 				}
@@ -67,8 +66,8 @@
 <style scoped lang="less">
 	.search-box {
 		width: 100%;
-		height: 88rpx;
-		padding-bottom: 24rpx;
+		height: 112rpx;
+		padding: 24rpx 0;
 		box-sizing: border-box;
 		background-color: #333333;
 		font-size: 28rpx;

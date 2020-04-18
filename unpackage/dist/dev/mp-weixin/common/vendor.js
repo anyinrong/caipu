@@ -7614,9 +7614,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!*******************************************************!*\
-  !*** C:/Users/DELL/Desktop/Hbuilder/caipu/pages.json ***!
-  \*******************************************************/
+/*!************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/HBuilderProjects/caipu/pages.json ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8520,20 +8520,20 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 
 /***/ }),
 /* 7 */
-/*!************************************************************************!*\
-  !*** C:/Users/DELL/Desktop/Hbuilder/caipu/pages.json?{"type":"style"} ***!
-  \************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/HBuilderProjects/caipu/pages.json?{"type":"style"} ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "印记菜谱", "enablePullDownRefresh": true, "usingComponents": { "search-view": "/components/search/search", "swiper-view": "/components/swiper/swiper", "groom-view": "/components/groom/groom", "goods-view": "/components/goods/goods" }, "usingAutoImportComponents": {} }, "pages/classify/classify": { "navigationBarTitleText": "分类", "enablePullDownRefresh": true, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/search/search": { "navigationBarTitleText": "搜索", "enablePullDownRefresh": true, "usingComponents": { "search-view": "/components/search/search" }, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "看图", "navigationBarBackgroundColor": "#333333", "backgroundColor": "#EFEFEF" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "印记菜谱", "enablePullDownRefresh": true }, "pages/classify/classify": { "navigationBarTitleText": "分类", "enablePullDownRefresh": true }, "pages/search/search": { "navigationBarTitleText": "搜索", "enablePullDownRefresh": true } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "看图", "navigationBarBackgroundColor": "#333333", "backgroundColor": "#EFEFEF" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
-/*!***********************************************************************!*\
-  !*** C:/Users/DELL/Desktop/Hbuilder/caipu/pages.json?{"type":"stat"} ***!
-  \***********************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/HBuilderProjects/caipu/pages.json?{"type":"stat"} ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8675,9 +8675,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 15 */
-/*!****************************************************************!*\
-  !*** C:/Users/DELL/Desktop/Hbuilder/caipu/common/iconfont.css ***!
-  \****************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/HBuilderProjects/caipu/common/iconfont.css ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -1,33 +1,28 @@
 <template>
-	<view class="goods-list">
-		<view class="goods-item">
-			<image src="http://5b0988e595225.cdn.sohucs.com/images/20190923/03ab81710fd44e0a833940a68382c001.jpeg" mode=""></image>
-			<view class="goods-info">
-				<view class="goods-title">
-					菠菜疙瘩 
+	<view class="goods">
+		<view class="title">
+			<text class="iconfont icon-huatifuhao"></text>
+			精品推荐
+			<text class="iconfont icon-huatifuhao"></text>
+		</view>
+		<view class="goods-list">
+			<view class="goods-item" v-for="item in lists" :key='item.classid' @click="goDetail(item.id)">
+				<view class="goods-image" :style="{backgroundImage:'url('+item.pic+ ')'}">
+					
 				</view>
-				<text class="iconfont icon-sousuo"></text>
-			</view>
-			<view class="goods-detail">
-				<text class="goods-name">醋溜白菜</text>
-				<text class="goods-num">1-2人</text>
-				<text class="goods-time">"10-20分钟"</text>
+				<!-- <image :src="item.pic" mode=""></image> -->
+				<view class="goods-info">
+					<view class="goods-title">
+						{{ item.name }}
+					</view>
+					<text class="iconfont icon-remen"></text>
+				</view>
+				<view class="goods-detail">
+					{{ item.tag }}
+				</view>
 			</view>
 		</view>
-		<view class="goods-item">
-			<image src="http://5b0988e595225.cdn.sohucs.com/images/20190923/03ab81710fd44e0a833940a68382c001.jpeg" mode=""></image>
-			<view class="goods-info">
-				<view class="goods-title">
-					菠菜疙瘩 
-				</view>
-				<text class="iconfont icon-sousuo"></text>
-			</view>
-			<view class="goods-detail">
-				<text class="goods-name">醋溜白菜</text>
-				<text class="goods-num">1-2人</text>
-				<text class="goods-time">"10-20分钟"</text>
-			</view>
-		</view>
+		<navigator open-type="switchTab" url="../../pages/classify/classify" class="more">查看更多</navigator>
 	</view>
 </template>
 
@@ -37,45 +32,84 @@
 			return {}
 		},
 		onLoad(e) {},
-		methods: {}
+		props:['lists'],
+		methods: {
+			goDetail (item) {
+				uni.navigateTo({
+					url: '../detail/detail?id=' + item
+				})
+			}
+		}
 	}
 </script>
 
 <style scoped lang="less">
-	.goods-list {
-		.goods-item {
-			width: 94%;
-			margin: 0 auto;
-			padding: 24rpx 0;
-			border-bottom: 2rpx solid rgba(0,0,0,0.08);
-			&:last-child {
-				border-bottom: 0;
-			}
-			image {
-				width: 100%;
-				height: 360rpx;
-				border-radius: 12rpx;
-				margin-bottom: 24rpx;
-			}
-			.goods-info {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				color: #999999;
-				font-size: 26rpx;
-				.goods-title {
-					font-size: 28rpx;
-					color: #333333;
+	.goods {
+		.title {
+			font-size: 32rpx;
+			color: #333333;
+			text-align: center;
+			padding-top: 24rpx;
+			border-top: 16rpx solid rgba(0,0,0,0.06);
+		}
+		.goods-list{
+			display: flex;
+			flex-flow: row wrap;
+			margin: 0 12rpx;
+			.goods-item {
+				width: 50%;
+				margin: 0 auto;
+				padding: 24rpx 12rpx;
+				box-sizing: border-box;
+				border-bottom: 2rpx solid rgba(0,0,0,0.08);
+				&:last-child {
+					border-bottom: 0;
+				}
+				.goods-image {
+					width: 100%;
+					height: 338rpx;
+					margin-bottom: 24rpx;
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-position: center;
+					overflow: hidden;
+				}
+				.goods-info {
+					display: flex;
+					justify-content: space-between;
+					align-items: flex-start;
+					font-size: 26rpx;
+					.goods-title {
+						font-size: 32rpx;
+						color: #333333;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+					text {
+						color: red;
+					}
+				}
+				.goods-detail {
+					font-size: 26rpx;
+					color: #999999;
+					margin-top: 12rpx;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					text {
+						margin-right: 24rpx;
+					}
 				}
 			}
-			.goods-detail {
-				font-size: 24rpx;
-				color: #999999;
-				margin-top: 12rpx;
-				text {
-					margin-right: 24rpx;
-				}
-			}
+		}
+		
+		.more {
+			text-align: center;
+			padding: 12px 0;
+			color: #999999;
+			font-size: 14px;
+			background: rgba(0,0,0,.04);
 		}
 	}
 </style>

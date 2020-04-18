@@ -1,20 +1,7 @@
 <template>
 	<view class="search">
-		<searchView searchType='input' :inputValue='searchValue'></searchView>
+		<searchView :searchType='searchType' :inputValue='searchValue'></searchView>
 		<view class="history-box" v-if="isShow">
-			<view class="history">
-				<view class="history-title">
-					<view class="history-text">
-						历史搜索
-					</view>
-					<text class="iconfont icon-shanchu"></text>
-				</view>
-				<view class="history-list">
-					<view class="history-item">
-						家常菜
-					</view>
-				</view>
-			</view>
 			<view class="history">
 				<view class="history-title">
 					<view class="history-text">
@@ -22,55 +9,111 @@
 					</view>
 				</view>
 				<view class="history-list">
-					<view class="history-item">蛋糕</view>
-					<view class="history-item">养生</view>
+					<view class="history-item" @click="getData('蛋糕')">蛋糕</view>
+					<view class="history-item" @click="getData('养生')">养生</view>
 				</view>
 			</view>
 		</view>
 		<view class="list" v-else>
 			<goodsItemView v-for="item in lists" :key='item.classid' :items='item'></goodsItemView>
 		</view>
+		<shareView></shareView>
 	</view>
 </template>
 
 <script>
 	import searchView from '@/components/search/search';
 	import goodsItemView from '@/components/goods/item';
+	import shareView from '@/components/share/share';
 	export default {
 		data() {
 			return {
 				searchValue: '',
 				isShow: 0,
-				lists: []
+				lists: [],
+				classid: 0,
+				searchType: 'input',
+				start: 0
 			}
 		},
-		components:{searchView,goodsItemView},
+		components:{searchView,goodsItemView,shareView},
 		onLoad(e) {
-			console.log(e)
 			this.searchValue = e.value;
-			this.getData();
+			this.classid = e.classid;
+			console.log(e)
+			this.onReachBottomData();
 		},
+		onReachBottom(e) {
+			this.start += 20;
+			this.onReachBottomData();
+		},	
 		methods: {
+			onReachBottomData (e) {
+				const t = this;
+				if(t.classid == '') return;
+				uni.request({
+					url: t.$serverUrl + '/byclass',
+					data: { 
+						appkey: t.$appkey,
+						classid: t.classid,
+						start: t.start,
+						num: 20
+					},
+					success: (ret) => {
+						if (ret.statusCode !== 200) {
+							console.log('请求失败', ret)
+							return;
+						};
+						const data = ret.data.result;
+						t.lists = t.lists.concat(data.list);
+						if(data.length==0) t.isShow = !0;
+					}
+				});
+			},
 			getData (e) {
 				var t = this;
+				t.classid = '';
 				uni.request({
 					url: t.$serverUrl + '/search',
 					data: { 
 						appkey: t.$appkey,
-						keyword: t.searchValue,
+						keyword: e,
 						num: 60
 					},
 					success: (ret) => {
 						if (ret.statusCode !== 200) {
-							t.isShow = !0
 							console.log('请求失败', ret)
 							return;
 						};
 						const data = ret.data.result.list;
-						t.lists = data;
+						if(data.length==0) {
+							return t.isShow = !0;
+						} else {
+							t.isShow = !1
+							t.lists = data;
+						}
 					}
 				});
+				
 			},
+		},
+		onShareAppMessage(res) {
+			if (res.from === 'button') { // 来自页面内分享按钮
+				return {
+					title: '印记菜谱',
+					desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+					imageUrl: require('../../static/xiafan.png'),
+					success: res => {},
+					fail: err => {}
+				}
+			}
+			return {
+				title: '印记菜谱',
+				desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+				imageUrl: require('../../static/xiafan.png'),
+				success: res => {},
+				fail: err => {}
+			}
 		}
 	}
 </script>

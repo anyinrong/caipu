@@ -1,10 +1,7 @@
 <template>
 	<swiper class="swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 		<swiper-item class="swiper-item">
-			<image src="http://img.zcool.cn/community/01222658a6f9caa801219c779f468b.jpg" mode=""></image>
-		</swiper-item>
-		<swiper-item class="swiper-item">
-			<image src="http://img.zcool.cn/community/01222658a6f9caa801219c779f468b.jpg" mode=""></image>
+			<image :src="require('../../static/banner.png')" mode=""></image>
 		</swiper-item>
 	</swiper>
 </template>

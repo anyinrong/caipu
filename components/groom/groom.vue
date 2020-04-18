@@ -2,25 +2,26 @@
 	<view class="groom">
 		<view class="groom-info">
 			<view class="groom-title">每日推荐</view>
-			<view class="groom-more">
+			<navigator url=""></navigator>
+			<navigator open-type="switchTab" url="../../pages/classify/classify" class="groom-more">
 				查看更多
-			</view>
+			</navigator>
 		</view>
 		<view class="groom-group">
-			<view class="groom-group-item">
-				<image src="http://5b0988e595225.cdn.sohucs.com/images/20190923/03ab81710fd44e0a833940a68382c001.jpeg" mode=""></image>
-				<view>清淡</view>
-			</view>
-			<view class="groom-group-item">
-				<image src="http://5b0988e595225.cdn.sohucs.com/images/20190923/03ab81710fd44e0a833940a68382c001.jpeg" mode=""></image>
+			<view class="groom-group-item" @click="goSearch(302)">
+				<image  :src="require('../../static/jiachang.png')"  mode=""></image>
 				<view>家常菜</view>
 			</view>
-			<view class="groom-group-item">
-				<image src="http://5b0988e595225.cdn.sohucs.com/images/20190923/03ab81710fd44e0a833940a68382c001.jpeg" mode=""></image>
-				<view>清淡</view>
+			<view class="groom-group-item" @click="goSearch(503)">
+				<image :src="require('../../static/xiafan.png')" mode=""></image>
+				<view>下饭菜</view>
 			</view>
-			<view class="groom-group-item">
-				<image src="http://5b0988e595225.cdn.sohucs.com/images/20190923/03ab81710fd44e0a833940a68382c001.jpeg" mode=""></image>
+			<view class="groom-group-item" @click="goSearch(338)">
+				<image :src="require('../../static/hongbei.png')" mode=""></image>
+				<view>烘焙</view>
+			</view>
+			<view class="groom-group-item" @click="goSearch(307)">
+				<image :src="require('../../static/qingdan.png')" mode=""></image>
 				<view>清淡</view>
 			</view>
 		</view>
@@ -33,7 +34,13 @@
 			return {}
 		},
 		onLoad(e) {},
-		methods: {}
+		methods: {
+			goSearch(item) {
+				uni.navigateTo({
+					url: '../../pages/search/search?classid=' + item
+				})
+			}
+		}
 	}
 </script>
 
@@ -43,7 +50,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin: 0 24rpx 24rpx;
-		font-size: 28rpx;
+		font-size: 32rpx;
 		color: #333333;
 		.groom-more {
 			color: #999999;
@@ -65,6 +72,7 @@
 					width: 100%;
 					height: 100%;
 					border-radius: 12rpx;
+					object-fit: cover;
 				}
 				view {
 					position: absolute;

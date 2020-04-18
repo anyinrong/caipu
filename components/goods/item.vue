@@ -1,7 +1,7 @@
 <template>
-	<view class="item">
-		<image src="{{ items.pic }}" mode=""></image>
-		<view class="item-info">
+	<view class="item" @click="goDetail(items.id)">
+		<image :src="items.pic" mode=""></image>
+		<view class="item-info" >
 			<view class="item-title">{{ items.name }}</view>
 			<view class="item-detail">{{ items.tag }}</view>
 			<view class="item-text">
@@ -18,7 +18,13 @@
 		},
 		props:['items'],
 		onLoad(e) {},
-		methods: {}
+		methods: {
+			goDetail (item) {
+				uni.navigateTo({
+					url: '../detail/detail?id=' + item
+				})
+			}
+		}
 	}
 </script>
 
