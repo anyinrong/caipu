@@ -35,4 +35,11 @@
 	.share .share-btn {
 		border: none;
 	}
+	
+	.cue-text {
+		font-size: 26rpx;
+		color: #cccccc;
+		text-align: center;
+		margin-top: 24rpx;
+	}
 </style>

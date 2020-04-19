@@ -15,6 +15,9 @@ _vue.default.config.productionTip = false;
 
 _vue.default.prototype.$serverUrl = 'https://api.binstd.com/recipe/';
 _vue.default.prototype.$appkey = '5f78a900d9b94766';
+_vue.default.prototype.random = function (lower, upper) {
+  return Math.floor(Math.random() * (upper - lower)) + lower;
+};
 
 _App.default.mpType = 'app';
 

@@ -1,10 +1,12 @@
 <template>
 	<view class="index">
-		<searchView></searchView>
-		<swiperView></swiperView>
-		<groomView></groomView>
-		<goodsView :lists='lists'></goodsView>
-		<shareView></shareView>
+		<view v-show="isShow">
+			<searchView></searchView>
+			<swiperView></swiperView>
+			<groomView></groomView>
+			<goodsView :lists='lists'></goodsView>
+			<shareView></shareView>
+		</view>
 	</view>
 </template>
 
@@ -19,7 +21,8 @@
 	export default {
 		data() {
 			return {
-				lists: ''
+				lists: '',
+				isShow: 0
 			}
 		},
 		components:{searchView,swiperView,groomView,goodsView,shareView},
@@ -29,6 +32,9 @@
 		methods: {
 			getData(e) {
 				var t = this;
+				uni.showLoading({
+					title: '加载中'
+				});
 				uni.request({
 					url: t.$serverUrl + '/byclass',
 					data: { 
@@ -38,12 +44,10 @@
 						num: 20
 					},
 					success: (ret) => {
-						if (ret.statusCode !== 200) {
-							console.log('请求失败', ret)
-							return;
-						};
 						const data = ret.data.result.list;
 						t.lists = data;
+						uni.hideLoading();
+						t.isShow = !t.isShow;
 					}
 				});
 			},

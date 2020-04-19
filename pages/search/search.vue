@@ -1,23 +1,28 @@
 <template>
 	<view class="search">
-		<searchView :searchType='searchType' :inputValue='searchValue'></searchView>
-		<view class="history-box" v-if="isShow">
-			<view class="history">
-				<view class="history-title">
-					<view class="history-text">
-						热门搜索
+		<view v-show="hidden">
+			<searchView :searchType='searchType' :inputValue='searchValue'></searchView>
+			<view class="history-box" v-if="isShow">
+				<view class="history">
+					<view class="history-title">
+						<view class="history-text">
+							热门搜索
+						</view>
+					</view>
+					<view class="history-list">
+						<view class="history-item" @click="getData('蛋糕')">蛋糕</view>
+						<view class="history-item" @click="getData('养生')">养生</view>
 					</view>
 				</view>
-				<view class="history-list">
-					<view class="history-item" @click="getData('蛋糕')">蛋糕</view>
-					<view class="history-item" @click="getData('养生')">养生</view>
+			</view>
+			<view class="list" v-else>
+				<goodsItemView v-for="item in lists" :key='item.classid' :items='item'></goodsItemView>
+				<view class="cue-text" v-if="lists.length==0">
+					- - 暂无相关数据 - -
 				</view>
 			</view>
+			<shareView></shareView>
 		</view>
-		<view class="list" v-else>
-			<goodsItemView v-for="item in lists" :key='item.classid' :items='item'></goodsItemView>
-		</view>
-		<shareView></shareView>
 	</view>
 </template>
 
@@ -30,6 +35,7 @@
 			return {
 				searchValue: '',
 				isShow: 0,
+				hidden: 0,
 				lists: [],
 				classid: 0,
 				searchType: 'input',
@@ -41,6 +47,9 @@
 			this.searchValue = e.value;
 			this.classid = e.classid;
 			console.log(e)
+			uni.showLoading({
+				title: '加载中'
+			});
 			this.onReachBottomData();
 		},
 		onReachBottom(e) {
@@ -51,6 +60,7 @@
 			onReachBottomData (e) {
 				const t = this;
 				if(t.classid == '') return;
+				
 				uni.request({
 					url: t.$serverUrl + '/byclass',
 					data: { 
@@ -60,12 +70,10 @@
 						num: 20
 					},
 					success: (ret) => {
-						if (ret.statusCode !== 200) {
-							console.log('请求失败', ret)
-							return;
-						};
 						const data = ret.data.result;
 						t.lists = t.lists.concat(data.list);
+						uni.hideLoading();
+						t.hidden = 1;
 						if(data.length==0) t.isShow = !0;
 					}
 				});
@@ -81,11 +89,9 @@
 						num: 60
 					},
 					success: (ret) => {
-						if (ret.statusCode !== 200) {
-							console.log('请求失败', ret)
-							return;
-						};
 						const data = ret.data.result.list;
+						uni.hideLoading();
+						t.hidden = 1;
 						if(data.length==0) {
 							return t.isShow = !0;
 						} else {

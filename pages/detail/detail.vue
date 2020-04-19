@@ -1,35 +1,37 @@
 <template>
 	<view class="detail">
-		<image  class="goods-image" :src="detail.pic" mode=""></image>
-		<view class="detail-info">
-			<view class="goods-title">{{ detail.name }}</view>
-			<view class="goods-detail">{{ detail.content }}</view>
-			<view class="goods-text">
-				<text>{{ detail.cookingtime }}</text>
-				<text>{{ detail.peoplenum }}</text>
-			</view>
-			<view class="material">
-				<view class="material-title">用料</view>
-				<view class="material-list">
-					<view class="material-item" v-for="(v,i) in detail.material" :key='i'>
-						<text>{{ v.mname}}</text>
-						<text>{{ v.amount}}</text>
+		<view v-show="isShow">
+			<image  class="goods-image" :src="detail.pic" mode=""></image>
+			<view class="detail-info">
+				<view class="goods-title">{{ detail.name }}</view>
+				<view class="goods-detail">{{ detail.content }}</view>
+				<view class="goods-text">
+					<text>{{ detail.cookingtime }}</text>
+					<text>{{ detail.peoplenum }}</text>
+				</view>
+				<view class="material">
+					<view class="material-title">用料</view>
+					<view class="material-list">
+						<view class="material-item" v-for="(v,i) in detail.material" :key='i'>
+							<text>{{ v.mname}}</text>
+							<text>{{ v.amount}}</text>
+						</view>
 					</view>
 				</view>
-			</view>
-			<view class="method">
-				<view class="method-title">做法</view>
-				<view class="method-list">
-					<view class="method-item" v-for="(v,i) in detail.process" :key='i'>
-						<image :src="v.pic" mode=""></image>
-						<view class="method-text">
-							{{i+1}} : {{ v.pcontent }}
+				<view class="method">
+					<view class="method-title">做法</view>
+					<view class="method-list">
+						<view class="method-item" v-for="(v,i) in detail.process" :key='i'>
+							<image :src="v.pic" mode=""></image>
+							<view class="method-text">
+								{{i+1}} : {{ v.pcontent }}
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
+			<shareView></shareView>
 		</view>
-		<shareView></shareView>
 	</view>
 </template>
 
@@ -39,15 +41,20 @@
 		data() {
 			return {
 				detail: '',
+				isShow: 0
 			}
 		},
 		components:{shareView},
 		onLoad(e) {
 			this.getData(e.id);
+			console.log(e.id)
 		},
 		methods: {
 			getData (id) {
 				var t = this;
+				uni.showLoading({
+					title: "加载中"
+				});
 				uni.request({
 					url: t.$serverUrl + '/detail',
 					data: { 
@@ -55,12 +62,10 @@
 						id: id
 					},
 					success: (ret) => {
-						if (ret.statusCode !== 200) {
-							console.log('请求失败', ret)
-							return;
-						};
 						const data = ret.data.result;
 						t.detail = data;
+						uni.hideLoading();
+						t.isShow = !t.isShow;
 					}
 				});
 				

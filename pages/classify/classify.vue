@@ -1,25 +1,32 @@
 <template>
 	<view class="classify">
-		<searchView searchType='text'></searchView>
-		<shareView></shareView>
-		<view class="content" :style="'height:' + (screenHeight-44) + 'px'">
-			<scroll-view scroll-y="true" class="scroll-lefy">
-				<view class="scroll-lefy-item"
-						:class="{select:index == i}"
-						v-for="(item,i) in lists" 
-						:key='item.classid'
-						@click="getItem(item,i)">
-						{{ item.name }}
+		<view v-show="isShow">
+			<searchView searchType='text'></searchView>
+			<view v-if="lists.length>0">
+				<shareView></shareView>
+				<view class="content" :style="'height:' + (screenHeight-44) + 'px'">
+					<scroll-view scroll-y="true" class="scroll-lefy">
+						<view class="scroll-lefy-item"
+								:class="{select:index == i}"
+								v-for="(item,i) in lists" 
+								:key='item.classid'
+								@click="getItem(item,i)">
+								{{ item.name }}
+						</view>
+					</scroll-view>
+					<scroll-view scroll-y="true" class="scroll-right">
+						<view class="scroll-right-item" 
+							v-for="(item,i) in items"
+							:key='item.classid'
+							@click="goSearch(item)">
+							{{ item.name }}
+						</view>
+					</scroll-view>
 				</view>
-			</scroll-view>
-			<scroll-view scroll-y="true" class="scroll-right">
-				<view class="scroll-right-item" 
-					v-for="(item,i) in items"
-					:key='item.classid'
-					@click="goSearch(item)">
-					{{ item.name }}
-				</view>
-			</scroll-view>
+			</view>
+			<view class="cue-text" v-if="lists.length==0">
+				- - 暂无相关数据 - -
+			</view>
 		</view>
 	</view>
 </template>
@@ -33,7 +40,8 @@
 				screenHeight: 0,
 				lists: [],
 				items: [],
-				index: 0
+				index: 0,
+				isShow: 0
 			}
 		},
 		components:{searchView,shareView},
@@ -49,19 +57,20 @@
 		methods: {
 			getData (e) {
 				var t = this;
+				uni.showLoading({
+					title: '加载中'
+				});
 				uni.request({
 					url: t.$serverUrl + '/class',
 					data: { 
 						appkey: t.$appkey,
 					},
 					success: (ret) => {
-						if (ret.statusCode !== 200) {
-							console.log('请求失败', ret)
-							return;
-						};
 						const data = ret.data.result;
 						t.lists = data;
 						t.items = data[t.index].list;
+						uni.hideLoading();
+						t.isShow = !t.isShow;
 					}
 				});
 			},

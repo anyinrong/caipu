@@ -6,7 +6,7 @@
 			<text class="iconfont icon-huatifuhao"></text>
 		</view>
 		<view class="goods-list">
-			<view class="goods-item" v-for="item in lists" :key='item.classid' @click="goDetail(item.id)">
+			<view class="goods-item" v-for="item in newlists" :key='item.id' @click="goDetail(item.id)">
 				<view class="goods-image" :style="{backgroundImage:'url('+item.pic+ ')'}">
 					
 				</view>
@@ -22,17 +22,31 @@
 				</view>
 			</view>
 		</view>
-		<navigator open-type="switchTab" url="../../pages/classify/classify" class="more">查看更多</navigator>
+		<view class="cue-text" v-if="newlists.length==0">
+			- - 暂无相关数据 - -
+		</view>
+		<navigator v-if="newlists.length>0" open-type="switchTab" url="../../pages/classify/classify" class="more">查看更多</navigator>
 	</view>
 </template>
 
 <script>
 	export default {
-		data() {
-			return {}
+		data(){
+			return {
+				newlists: []
+			}
 		},
-		onLoad(e) {},
-		props:['lists'],
+		props:{
+			lists: {
+				type: Array,
+				value: []
+			}
+		},
+		watch:{
+	　　　　lists(){
+	　　　　　　this.newlists = this.lists
+	　　　　}
+	　　},
 		methods: {
 			goDetail (item) {
 				uni.navigateTo({

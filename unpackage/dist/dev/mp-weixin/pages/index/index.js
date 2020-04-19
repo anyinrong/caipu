@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var searchView = function searchView() {__webpack_require__.e(/*! require.ensure | components/search/search */ "components/search/search").then((function () {return resolve(__webpack_require__(/*! @/components/search/search */ 38));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperView = function swiperView() {__webpack_require__.e(/*! require.ensure | components/swiper/swiper */ "components/swiper/swiper").then((function () {return resolve(__webpack_require__(/*! @/components/swiper/swiper */ 45));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var groomView = function groomView() {__webpack_require__.e(/*! require.ensure | components/groom/groom */ "components/groom/groom").then((function () {return resolve(__webpack_require__(/*! @/components/groom/groom */ 52));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsView = function goodsView() {__webpack_require__.e(/*! require.ensure | components/goods/goods */ "components/goods/goods").then((function () {return resolve(__webpack_require__(/*! @/components/goods/goods */ 59));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var searchView = function searchView() {__webpack_require__.e(/*! require.ensure | components/search/search */ "components/search/search").then((function () {return resolve(__webpack_require__(/*! @/components/search/search */ 47));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperView = function swiperView() {Promise.all(/*! require.ensure | components/swiper/swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/swiper/swiper")]).then((function () {return resolve(__webpack_require__(/*! @/components/swiper/swiper */ 54));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var groomView = function groomView() {Promise.all(/*! require.ensure | components/groom/groom */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/groom/groom")]).then((function () {return resolve(__webpack_require__(/*! @/components/groom/groom */ 62));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsView = function goodsView() {__webpack_require__.e(/*! require.ensure | components/goods/goods */ "components/goods/goods").then((function () {return resolve(__webpack_require__(/*! @/components/goods/goods */ 72));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shareView = function shareView() {__webpack_require__.e(/*! require.ensure | components/share/share */ "components/share/share").then((function () {return resolve(__webpack_require__(/*! @/components/share/share */ 79));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -154,38 +154,63 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var searcharr = ['白菜', '土豆', '五花肉', '茄子', '西红柿'];var _default =
+
+
+
+
+var searcharr = [377, 302, 303, 317, 310, 317, 313, 315, 224, 2];var _default =
 {
   data: function data() {
     return {
-      lists: '' };
+      lists: '',
+      isShow: 0 };
 
   },
-  components: { searchView: searchView, swiperView: swiperView, groomView: groomView, goodsView: goodsView },
+  components: { searchView: searchView, swiperView: swiperView, groomView: groomView, goodsView: goodsView, shareView: shareView },
   onLoad: function onLoad(e) {
     this.getData();
   },
   methods: {
     getData: function getData(e) {
       var t = this;
+      uni.showLoading({
+        title: '加载中' });
+
       uni.request({
-        url: t.$serverUrl + '/search',
+        url: t.$serverUrl + '/byclass',
         data: {
           appkey: t.$appkey,
-          keyword: '小吃',
-          num: 40 },
+          classid: searcharr[this.random(1, 10)],
+          start: 30,
+          num: 20 },
 
         success: function success(ret) {
-          if (ret.statusCode !== 200) {
-            console.log('请求失败', ret);
-            return;
-          };
           var data = ret.data.result.list;
           t.lists = data;
-          console.log(data);
+          uni.hideLoading();
+          t.isShow = !t.isShow;
         } });
 
-    } } };exports.default = _default;
+    } },
+
+  onShareAppMessage: function onShareAppMessage(res) {
+    if (res.from === 'button') {// 来自页面内分享按钮
+      return {
+        title: '印记菜谱',
+        desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+        imageUrl: __webpack_require__(/*! ../../static/xiafan.png */ 22),
+        success: function success(res) {},
+        fail: function fail(err) {} };
+
+    }
+    return {
+      title: '印记菜谱',
+      desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+      imageUrl: __webpack_require__(/*! ../../static/xiafan.png */ 22),
+      success: function success(res) {},
+      fail: function fail(err) {} };
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

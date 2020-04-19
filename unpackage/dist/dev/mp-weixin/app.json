@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/classify/classify",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/detail/detail"
   ],
   "subPackages": [],
   "window": {
@@ -32,5 +33,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap21.json"
+  "sitemapLocation": "sitemap94.json"
 }
