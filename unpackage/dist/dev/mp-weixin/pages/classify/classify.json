@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "分类",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "search-view": "/components/search/search",
-    "share-view": "/components/share/share"
-  }
-}
