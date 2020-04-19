@@ -241,7 +241,6 @@ __webpack_require__.r(__webpack_exports__);
       return {
         title: '印记菜谱',
         desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
-        imageUrl: __webpack_require__(/*! ../../static/xiafan.png */ 22),
         success: function success(res) {},
         fail: function fail(err) {} };
 
@@ -249,7 +248,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       title: '印记菜谱',
       desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
-      imageUrl: __webpack_require__(/*! ../../static/xiafan.png */ 22),
       success: function success(res) {},
       fail: function fail(err) {} };
 

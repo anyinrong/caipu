@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "搜索",
-  "enablePullDownRefresh": true,
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "search-view": "/components/search/search",
     "goods-item-view": "/components/goods/item",

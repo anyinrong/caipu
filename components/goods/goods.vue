@@ -70,15 +70,12 @@
 			display: flex;
 			flex-flow: row wrap;
 			margin: 0 12rpx;
+			padding: 12rpx 0;
 			.goods-item {
 				width: 50%;
 				margin: 0 auto;
-				padding: 24rpx 12rpx;
+				padding: 12rpx 12rpx;
 				box-sizing: border-box;
-				border-bottom: 2rpx solid rgba(0,0,0,0.08);
-				&:last-child {
-					border-bottom: 0;
-				}
 				.goods-image {
 					width: 100%;
 					height: 338rpx;

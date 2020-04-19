@@ -57,7 +57,6 @@
 				return {
 					title: '印记菜谱',
 					desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
-					imageUrl: require('../../static/xiafan.png'),
 					success: res => {},
 					fail: err => {}
 				}
@@ -65,7 +64,6 @@
 			return {
 				title: '印记菜谱',
 				desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
-				imageUrl: require('../../static/xiafan.png'),
 				success: res => {},
 				fail: err => {}
 			}

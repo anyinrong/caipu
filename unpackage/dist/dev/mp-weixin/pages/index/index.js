@@ -198,7 +198,6 @@ var searcharr = [377, 302, 303, 317, 310, 317, 313, 315, 224, 2];var _default =
       return {
         title: '印记菜谱',
         desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
-        imageUrl: __webpack_require__(/*! ../../static/xiafan.png */ 22),
         success: function success(res) {},
         fail: function fail(err) {} };
 
@@ -206,7 +205,6 @@ var searcharr = [377, 302, 303, 317, 310, 317, 313, 315, 224, 2];var _default =
     return {
       title: '印记菜谱',
       desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
-      imageUrl: __webpack_require__(/*! ../../static/xiafan.png */ 22),
       success: function success(res) {},
       fail: function fail(err) {} };
 

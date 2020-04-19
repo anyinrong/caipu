@@ -83,7 +83,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   var m0 = __webpack_require__(/*! ../../static/jiachang.png */ 65)
 
-  var m1 = __webpack_require__(/*! ../../static/xiafan.png */ 22)
+  var m1 = __webpack_require__(/*! ../../static/xiafan.png */ 28)
 
   var m2 = __webpack_require__(/*! ../../static/hongbei.png */ 66)
 

@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "详情",
-  "enablePullDownRefresh": true,
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "share-view": "/components/share/share"
   }
