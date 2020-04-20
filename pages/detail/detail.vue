@@ -1,13 +1,13 @@
 <template>
 	<view class="detail">
 		<view v-show="isShow">
-			<image  class="goods-image" :src="detail.pic" mode=""></image>
+			<image  class="goods-image" :src="detail.pic" mode="aspectFill"></image>
 			<view class="detail-info">
 				<view class="goods-title">{{ detail.name }}</view>
 				<view class="goods-detail">{{ detail.content }}</view>
 				<view class="goods-text">
-					<text>{{ detail.cookingtime }}</text>
-					<text>{{ detail.peoplenum }}</text>
+					<text>适合: {{ detail.cookingtime }}</text>
+					<text>时间: {{ detail.peoplenum }}</text>
 				</view>
 				<view class="material">
 					<view class="material-title">用料</view>
@@ -22,7 +22,7 @@
 					<view class="method-title">做法</view>
 					<view class="method-list">
 						<view class="method-item" v-for="(v,i) in detail.process" :key='i'>
-							<image :src="v.pic" mode=""></image>
+							<image :src="v.pic" mode="aspectFit"></image>
 							<view class="method-text">
 								{{i+1}} : {{ v.pcontent }}
 							</view>
@@ -94,9 +94,10 @@
 
 <style scoped lang="less">
 	.detail {
+		padding-bottom: 24rpx;
 		.goods-image {
 			width: 100%;
-			height: 488rpx;
+			height: 660rpx;
 		}
 		.detail-info {
 			margin: 0 24rpx;
@@ -109,6 +110,9 @@
 				font-size: 26rpx;
 				color: #999999;
 				margin-top: 24rpx;
+				text {
+					margin-right: 24rpx;
+				}
 			}
 			.goods-detail {
 				font-size: 28rpx;
@@ -141,6 +145,7 @@
 				}
 				image {
 					width: 100%;
+					height: 564rpx;
 					border-radius: 12rpx;
 				}
 				.method-text {
