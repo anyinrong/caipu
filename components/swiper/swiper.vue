@@ -1,7 +1,7 @@
 <template>
 	<swiper class="swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 		<swiper-item class="swiper-item">
-			<image :src="require('../../static/banner.png')" mode=""></image>
+			<image :src="require('../../static/banner.png')" mode="aspectFill"></image>
 		</swiper-item>
 	</swiper>
 </template>
@@ -19,7 +19,7 @@
 <style scoped lang="less">
 	.swiper {
 		width: 100%;
-		height: 326rpx;
+		height: 440rpx;
 		.swiper-item {
 			width: 100%;
 			height: 100%;

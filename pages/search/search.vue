@@ -10,8 +10,15 @@
 						</view>
 					</view>
 					<view class="history-list">
-						<view class="history-item" @click="getData('蛋糕')">蛋糕</view>
-						<view class="history-item" @click="getData('养生')">养生</view>
+						<view class="history-item" @click="getData('红烧肉')">红烧肉</view>
+						<view class="history-item" @click="getData('鸡肉')">鸡肉</view>
+						<view class="history-item" @click="getData('红烧排骨')">红烧排骨</view>
+						<view class="history-item" @click="getData('粥')">粥</view>
+						<view class="history-item" @click="getData('减肥')">减肥</view>
+						<view class="history-item" @click="getData('麻辣小龙虾')">麻辣小龙虾</view>
+						<view class="history-item" @click="getData('卤肉')">卤肉</view>
+						<view class="history-item" @click="getData('煎饼')">煎饼</view>
+						<view class="history-item" @click="getData('烧烤')">烧烤</view>
 					</view>
 				</view>
 			</view>
@@ -45,22 +52,27 @@
 		components:{searchView,goodsItemView,shareView},
 		onLoad(e) {
 			this.searchValue = e.value;
-			this.classid = e.classid;
-			console.log(e)
-			uni.showLoading({
-				title: '加载中'
-			});
-			this.onReachBottomData();
+			if(e.classid){
+				this.classid = e.classid;
+				this.onReachBottomData();
+			} else {
+				this.isShow = !0;
+				this.hidden = !0;
+			}
+			
 		},
 		onReachBottom(e) {
+			if(this.classid == '') return;
 			this.start += 20;
 			this.onReachBottomData();
 		},	
 		methods: {
 			onReachBottomData (e) {
+				uni.showLoading({
+					title: '加载中'
+				});
 				const t = this;
 				if(t.classid == '') return;
-				
 				uni.request({
 					url: t.$serverUrl + '/byclass',
 					data: { 
@@ -74,13 +86,17 @@
 						t.lists = t.lists.concat(data.list);
 						uni.hideLoading();
 						t.hidden = 1;
-						if(data.length==0) t.isShow = !0;
+						if(data.length==0&&t.lists.length==0) t.isShow = !0;
 					}
 				});
 			},
 			getData (e) {
+				uni.showLoading({
+					title: '加载中'
+				});
 				var t = this;
 				t.classid = '';
+				console.log(t.classid)
 				uni.request({
 					url: t.$serverUrl + '/search',
 					data: { 
@@ -133,7 +149,7 @@
 		}
 		.history-list {
 			display: flex;
-			flex-grow: row wrap;
+			flex-wrap: wrap;
 			margin: 0 12rpx;
 			.history-item {
 				height: 56rpx;

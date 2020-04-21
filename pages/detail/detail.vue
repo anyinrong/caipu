@@ -22,7 +22,7 @@
 					<view class="method-title">做法</view>
 					<view class="method-list">
 						<view class="method-item" v-for="(v,i) in detail.process" :key='i'>
-							<image :src="v.pic" mode="aspectFit"></image>
+							<image :src="v.pic" mode="aspectFill"></image>
 							<view class="method-text">
 								{{i+1}} : {{ v.pcontent }}
 							</view>

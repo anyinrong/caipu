@@ -55,6 +55,7 @@
 							const data = ret.data.result.list;
 							this.$parent.$data.lists = data;
 							this.$parent.$data.isShow = 0;
+							this.$parent.$data.classid = '';
 						}
 					});
 				}
