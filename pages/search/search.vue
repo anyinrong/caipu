@@ -51,15 +51,16 @@
 		},
 		components:{searchView,goodsItemView,shareView},
 		onLoad(e) {
-			this.searchValue = e.value;
 			if(e.classid){
 				this.classid = e.classid;
 				this.onReachBottomData();
+			} else if(e.value) {
+				this.searchValue = e.value;
+				this.getData (e.value)
 			} else {
 				this.isShow = !0;
 				this.hidden = !0;
 			}
-			
 		},
 		onReachBottom(e) {
 			if(this.classid == '') return;
@@ -72,7 +73,6 @@
 					title: '加载中'
 				});
 				const t = this;
-				if(t.classid == '') return;
 				uni.request({
 					url: t.$serverUrl + '/byclass',
 					data: { 
@@ -82,11 +82,14 @@
 						num: 20
 					},
 					success: (ret) => {
-						const data = ret.data.result;
-						t.lists = t.lists.concat(data.list);
 						uni.hideLoading();
 						t.hidden = 1;
-						if(data.length==0&&t.lists.length==0) t.isShow = !0;
+						const data = ret.data.result;
+						if(data !== '' && data.list.length > 0) {
+							t.lists = t.lists.concat(data.list)
+						} else if(data !== '' && t.lists.length == 0) {
+							t.isShow = !0;
+						};
 					}
 				});
 			},
@@ -96,7 +99,6 @@
 				});
 				var t = this;
 				t.classid = '';
-				console.log(t.classid)
 				uni.request({
 					url: t.$serverUrl + '/search',
 					data: { 
@@ -105,14 +107,14 @@
 						num: 60
 					},
 					success: (ret) => {
-						const data = ret.data.result.list;
+						const data = ret.data.result;
 						uni.hideLoading();
 						t.hidden = 1;
-						if(data.length==0) {
+						if(data !=='' && data.list.length==0) {
 							return t.isShow = !0;
 						} else {
 							t.isShow = !1
-							t.lists = data;
+							t.lists = data.list;
 						}
 					}
 				});
@@ -122,15 +124,16 @@
 		onShareAppMessage(res) {
 			if (res.from === 'button') { // 来自页面内分享按钮
 				return {
-					title: '印记菜谱',
-					desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+					title: '美食秘籍',
+					desc: "美食推荐 · 精选美食做法",
 					success: res => {},
 					fail: err => {}
 				}
 			}
+			
 			return {
-				title: '印记菜谱',
-				desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+				title: '美食秘籍',
+				desc: "美食推荐 · 精选美食做法",
 				success: res => {},
 				fail: err => {}
 			}

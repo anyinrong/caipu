@@ -19,7 +19,10 @@
 <style scoped lang="less">
 	.swiper {
 		width: 100%;
-		height: 440rpx;
+		height: 410rpx;
+		/* #ifdef MP-ALIPAY */
+			height: 192px!important;
+		/* #endif */
 		.swiper-item {
 			width: 100%;
 			height: 100%;

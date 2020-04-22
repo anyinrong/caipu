@@ -1,6 +1,6 @@
 <template>
 	<view class="item" @click="goDetail(items.id)">
-		<image :src="items.pic" mode=""></image>
+		<image :src="items.pic" mode="aspectFill"></image>
 		<view class="item-info" >
 			<view class="item-title">{{ items.name }}</view>
 			<view class="item-detail">{{ items.tag }}</view>
@@ -44,14 +44,14 @@
 		}
 		.item-info {
 			width: 100%;
-			font-size: 24rpx;
+			font-size: 26rpx;
 			.item-title {
 				font-size: 30rpx;
 				color: #333333;
 			}
 			.item-detail {
 				margin: 12rpx 0;
-				font-size: 24rpx;
+				font-size: 28rpx;
 				color: #666666;
 				line-height: 38rpx;
 				-webkit-box-orient: vertical;

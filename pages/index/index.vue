@@ -40,7 +40,7 @@
 					data: { 
 						appkey: t.$appkey,
 						classid: searcharr[this.random(1,10)],
-						start: 30,
+						start: 38,
 						num: 20
 					},
 					success: (ret) => {
@@ -55,15 +55,16 @@
 		onShareAppMessage(res) {
 			if (res.from === 'button') { // 来自页面内分享按钮
 				return {
-					title: '印记菜谱',
-					desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+					title: '美食秘籍',
+					desc: "美食推荐 · 精选美食做法",
 					success: res => {},
 					fail: err => {}
 				}
 			}
+			
 			return {
-				title: '印记菜谱',
-				desc: "学菜谱,就用印记菜谱,厨房小能手就是你~~~",
+				title: '美食秘籍',
+				desc: "美食推荐 · 精选美食做法",
 				success: res => {},
 				fail: err => {}
 			}

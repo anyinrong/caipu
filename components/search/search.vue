@@ -86,6 +86,7 @@
 				flex-shrink: 0;
 				background-color: #FFFFFF;
 				border-radius: 12rpx;
+				overflow: hidden;
 				position: relative;
 				text {
 					position: absolute;

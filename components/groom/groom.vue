@@ -9,19 +9,19 @@
 		</view>
 		<view class="groom-group">
 			<view class="groom-group-item" @click="goSearch(302)">
-				<image  :src="require('../../static/jiachang.png')"  mode=""></image>
+				<image  :src="require('../../static/jiachang.png')"  mode="aspectFill"></image>
 				<view>家常菜</view>
 			</view>
 			<view class="groom-group-item" @click="goSearch(503)">
-				<image :src="require('../../static/xiafan.png')" mode=""></image>
+				<image :src="require('../../static/xiafan.png')" mode="aspectFill"></image>
 				<view>下饭菜</view>
 			</view>
 			<view class="groom-group-item" @click="goSearch(338)">
-				<image :src="require('../../static/hongbei.png')" mode=""></image>
+				<image :src="require('../../static/hongbei.png')" mode="aspectFill"></image>
 				<view>烘焙</view>
 			</view>
 			<view class="groom-group-item" @click="goSearch(307)">
-				<image :src="require('../../static/qingdan.png')" mode=""></image>
+				<image :src="require('../../static/qingdan.png')" mode="aspectFill"></image>
 				<view>清淡</view>
 			</view>
 		</view>
@@ -54,7 +54,7 @@
 		color: #333333;
 		.groom-more {
 			color: #999999;
-			font-size: 26rpx;
+			font-size: 28rpx;
 		}
 	}
 	.groom {
