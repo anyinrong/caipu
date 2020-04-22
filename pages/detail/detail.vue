@@ -45,7 +45,7 @@
 			</view>
 			<!-- #ifdef MP-ALIPAY -->
 				<view class="footer-text">
-					- 做美食 , 用美食菜谱 -
+					- 做美食 , 用美食秘籍 -
 				</view>
 			<!-- #endif -->
 			<!-- #ifdef H5 || MP-WEIXIN || APP-PLUS || MP-TOUTIAO || MP-QQ-->
