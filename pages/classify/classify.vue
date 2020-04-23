@@ -67,7 +67,9 @@
 					},
 					success: (ret) => {
 						const data = ret.data.result;
-						t.lists = data;
+						t.lists = data.filter(function(item){
+							return item.classid !== 144;
+						});
 						t.items = data[t.index].list;
 						uni.hideLoading();
 						t.isShow = !t.isShow;
