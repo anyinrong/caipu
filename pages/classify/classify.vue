@@ -48,7 +48,6 @@
 		onLoad(e) {
 			uni.getSystemInfo({
 				success: (o) => {
-					console.log(o)
 					this.screenHeight = o.windowHeight;
 				}
 			});
@@ -67,10 +66,17 @@
 					},
 					success: (ret) => {
 						const data = ret.data.result;
+						// #ifdef MP-TOUTIAO 
 						t.lists = data.filter(function(item){
-							return item.classid !== 144;
+							return item.classid !== 144 && item.classid !== 1 && item.classid !== 113 && item.classid !== 213;
 						});
-						t.items = data[t.index].list;
+						t.items = t.lists[t.index].list;
+						// #endif
+						
+						// #ifdef H5 || MP-WEIXIN || APP-PLUS || MP-ALIPAY || MP-QQ
+						t.lists = data;
+						t.items = t.lists[t.index].list;
+						// #endif
 						uni.hideLoading();
 						t.isShow = !t.isShow;
 					}
