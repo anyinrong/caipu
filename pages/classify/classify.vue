@@ -74,7 +74,9 @@
 						// #endif
 						
 						// #ifdef H5 || MP-WEIXIN || APP-PLUS || MP-ALIPAY || MP-QQ
-						t.lists = data;
+						t.lists = data.filter(function(item){
+							return item.classid !== 144;
+						});
 						t.items = t.lists[t.index].list;
 						// #endif
 						uni.hideLoading();

@@ -7,8 +7,8 @@
 					<view class="goods-title">{{ detail.name }}</view>
 					<view class="goods-detail">{{ detail.content | replaceText}}</view>
 					<view class="goods-text">
-						<text>适合: {{ detail.cookingtime }}</text>
-						<text>时间: {{ detail.peoplenum }}</text>
+						<text>适合: {{ detail.peoplenum }}</text>
+						<text>时间: {{ detail.cookingtime }}</text>
 					</view>
 				</view>
 				<view class="material">
