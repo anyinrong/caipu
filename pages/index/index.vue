@@ -17,7 +17,7 @@
 	import goodsView from '@/components/goods/goods';
 	import shareView from '@/components/share/share';
 	
-	const searcharr = [377,302,303,317,310,317,313,315,224,2];
+	const searcharr = [377,302,303,304,309,317,310,317,224,313,315,224,2];
 	export default {
 		data() {
 			return {
@@ -40,7 +40,7 @@
 					data: { 
 						appkey: t.$appkey,
 						classid: searcharr[this.random(1,10)],
-						start: 38,
+						start: 34,
 						num: 20
 					},
 					success: (ret) => {

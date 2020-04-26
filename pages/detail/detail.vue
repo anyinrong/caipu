@@ -34,6 +34,16 @@
 				</view>
 			</view>
 			<shareView></shareView>
+			<!-- #ifdef MP-TOUTIAO -->
+			<view>
+			  <ad style="position: relative;left: 50%;transform: translate3d(-50%,0,0);padding-bottom: 24rpx;"
+				type="banner" 
+				ad-intervals="3000"
+				unit-id="9f4d45cl8h49prqdnd"
+				bindclose="closebanner"
+			  ></ad>
+			</view>
+			<!-- #endif -->
 			<view class="correlation" v-if="lists.length>0">
 				<view class="groom-info">
 					<view class="groom-title">相关推荐</view>
@@ -43,15 +53,24 @@
 				</view>
 				<goodsItemView v-for="item in lists" :key='item.classid' :items='item'></goodsItemView>
 			</view>
+			<!-- #ifdef MP-TOUTIAO -->
+			<view>
+			  <ad type="lImg rImg" scale="120 120"
+					unit-id="9f4d45cl8h49prqdnd"
+					bindclose="adclosehandler"
+			  ></ad>
+			</view>
+			<!-- #endif -->
+			
 			<!-- #ifdef MP-ALIPAY -->
-				<view class="footer-text">
-					- 做美食 , 用美食秘籍 -
-				</view>
+			<view class="footer-text">
+				- 做美食 , 用美食秘籍 -
+			</view>
 			<!-- #endif -->
 			<!-- #ifdef H5 || MP-WEIXIN || APP-PLUS || MP-TOUTIAO || MP-QQ-->
-				<view class="footer-text">
-					- 做美食 , 用印记 -
-				</view>
+			<view class="footer-text">
+				- 做美食 , 用印记 -
+			</view>
 			<!-- #endif -->
 		</view>
 	</view>
@@ -65,11 +84,18 @@
 			return {
 				detail: '',
 				lists: [],
-				isShow: 0
+				isShow: 0,
+				adShow: 0,
+				windowWidth: 0
 			}
 		},
 		components:{goodsItemView,shareView},
 		onLoad(e) {
+			uni.getSystemInfo({
+				success: (o) => {
+					this.windowWidth = o.windowWidth;
+				}
+			});
 			this.getData(e.id);
 		},
 		filters: {
@@ -119,6 +145,9 @@
 				uni.navigateTo({
 					url: '../search/search?value=' + name
 				})
+			},
+			bindclose () {
+				this.adShow = !this.adShow;
 			}
 		},
 		onShareAppMessage(res) {

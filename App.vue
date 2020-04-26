@@ -17,7 +17,7 @@
 	}
 	.share .share-btn {
 		position: fixed;
-		bottom: 16%;
+		bottom: 26%;
 		right: 24rpx;
 		z-index: 999999;
 		width: 88rpx;
