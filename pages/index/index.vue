@@ -4,7 +4,7 @@
 			<searchView></searchView>
 			<swiperView></swiperView>
 			<groomView></groomView>
-			<goodsView :lists='lists'></goodsView>
+			<goodsView :lists='lists' @handleguess='handleGuess'></goodsView>
 			<shareView></shareView>
 		</view>
 	</view>
@@ -17,7 +17,7 @@
 	import goodsView from '@/components/goods/goods';
 	import shareView from '@/components/share/share';
 	
-	const searcharr = [377,302,317,310,231,572,323,224,303,304,2,417,567,309,404,414,599,313,315,224];
+	const searcharr = [377,302,317,310,231,572,323,224,303,304,2,417,567,247,404,414,227,599,233,234,313,230,315,224,232,231,238,229,228,225];
 	export default {
 		data() {
 			return {
@@ -26,8 +26,10 @@
 			}
 		},
 		components:{searchView,swiperView,groomView,goodsView,shareView},
-		onLoad(e) {},
-		onShow() {
+		onLoad(e) {
+			this.getData();
+		},
+		onPullDownRefresh() {
 			this.getData();
 		},
 		methods: {
@@ -40,18 +42,22 @@
 					url: t.$serverUrl + '/byclass',
 					data: { 
 						appkey: t.$appkey,
-						classid: searcharr[this.random(1,20)],
-						start: 37,
-						num: 20,
+						classid: searcharr[this.random(1,30)],
+						start: 0,
+						num: 18,
 					},
 					success: (ret) => {
 						const data = ret.data.result.list;
 						t.lists = data;
 						uni.hideLoading();
+						uni.stopPullDownRefresh();
 						t.isShow = 1;
 					}
 				});
 			},
+			handleGuess () {
+				this.getData();
+			}
 		},
 		onShareAppMessage(res) {
 			if (res.from === 'button') { // 来自页面内分享按钮

@@ -4,6 +4,10 @@
 			<text class="iconfont icon-huatifuhao"></text>
 			精品推荐
 			<text class="iconfont icon-huatifuhao"></text>
+			<view class="guess" @click="getGuess">
+				<text class="iconfont icon-shuaxin1"></text>
+				<text class="guess-ic">换一换</text>
+			</view>
 		</view>
 		<view class="goods-list">
 			<view class="goods-item" v-for="item in newlists" :key='item.id' @click="goDetail(item.id)">
@@ -52,6 +56,9 @@
 				uni.navigateTo({
 					url: '../detail/detail?id=' + item
 				})
+			},
+			getGuess () {
+				this.$emit('handleguess');
 			}
 		}
 	}
@@ -65,6 +72,24 @@
 			text-align: center;
 			padding-top: 24rpx;
 			border-top: 16rpx solid rgba(0,0,0,0.06);
+			position: relative;
+			.guess {
+				position: absolute;
+				right: 24rpx;
+				top: 16rpx;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				.guess-ic {
+					color: #999999;
+					font-size: 24rpx;
+					margin-left: 8rpx;
+				}
+				.iconfont {
+					color: red;
+					font-size: 28rpx;
+				}
+			}
 		}
 		.goods-list{
 			display: flex;

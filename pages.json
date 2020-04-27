@@ -5,20 +5,18 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "美食秘籍",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true
+				
 			}
 		},
 		// #endif
-		
-		// #ifdef H5 || MP-WEIXIN || APP-PLUS || MP-TOUTIAO || MP-QQ
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "印记菜谱",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true
 			}
 		},
-		// #endif
 		{
 			"path": "pages/classify/classify",
 			"style": {

@@ -55,7 +55,7 @@
 			</view>
 			<!-- #ifdef MP-TOUTIAO -->
 			<view v-if="!adMoreShow">
-			  <ad type="lImg rImg" scale="120 120"
+			  <ad type="lImg rImg" scale="140 140"
 					unit-id="9f4d45cl8h49prqdnd"
 					@close="adcloseMore"
 			  ></ad>
