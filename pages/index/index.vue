@@ -6,6 +6,9 @@
 			<groomView></groomView>
 			<goodsView :lists='lists' @handleguess='handleGuess'></goodsView>
 			<shareView></shareView>
+			<!-- #ifdef MP-TOUTIAO -->
+			<contactView></contactView>
+			<!-- #endif -->
 		</view>
 	</view>
 </template>
@@ -16,6 +19,7 @@
 	import groomView from '@/components/groom/groom';
 	import goodsView from '@/components/goods/goods';
 	import shareView from '@/components/share/share';
+	import contactView from '@/components/contact/contact';
 	
 	const searcharr = [377,302,317,310,231,572,323,224,303,304,2,417,567,247,404,414,227,599,233,234,313,230,315,224,232,231,238,229,228,225];
 	export default {
@@ -25,7 +29,7 @@
 				isShow: 0
 			}
 		},
-		components:{searchView,swiperView,groomView,goodsView,shareView},
+		components:{searchView,swiperView,groomView,goodsView,shareView,contactView},
 		onLoad(e) {
 			this.getData();
 		},
