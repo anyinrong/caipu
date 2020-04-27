@@ -35,12 +35,12 @@
 			</view>
 			<shareView></shareView>
 			<!-- #ifdef MP-TOUTIAO -->
-			<view>
+			<view v-if="!adBannerShow">
 			  <ad style="position: relative;left: 50%;transform: translate3d(-50%,0,0);padding-bottom: 24rpx;"
 				type="banner" 
 				ad-intervals="3000"
 				unit-id="9f4d45cl8h49prqdnd"
-				bindclose="closebanner"
+				@close="closeAdBanner"
 			  ></ad>
 			</view>
 			<!-- #endif -->
@@ -54,10 +54,10 @@
 				<goodsItemView v-for="item in lists" :key='item.classid' :items='item'></goodsItemView>
 			</view>
 			<!-- #ifdef MP-TOUTIAO -->
-			<view>
+			<view v-if="!adMoreShow">
 			  <ad type="lImg rImg" scale="120 120"
 					unit-id="9f4d45cl8h49prqdnd"
-					bindclose="adclosehandler"
+					@close="adcloseMore"
 			  ></ad>
 			</view>
 			<!-- #endif -->
@@ -85,7 +85,8 @@
 				detail: '',
 				lists: [],
 				isShow: 0,
-				adShow: 0,
+				adBannerShow: 0,
+				adMoreShow: 0,
 				windowWidth: 0
 			}
 		},
@@ -146,8 +147,11 @@
 					url: '../search/search?value=' + name
 				})
 			},
-			bindclose () {
-				this.adShow = !this.adShow;
+			closeAdBanner() {
+				this.adBannerShow = !this.adBannerShow;
+			},
+			adcloseMore() {
+				this.adMoreShow = !this.adMoreShow;
 			}
 		},
 		onShareAppMessage(res) {

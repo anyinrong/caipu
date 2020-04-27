@@ -17,7 +17,7 @@
 	import goodsView from '@/components/goods/goods';
 	import shareView from '@/components/share/share';
 	
-	const searcharr = [377,302,303,304,309,317,310,317,224,313,315,224,2];
+	const searcharr = [377,302,317,310,231,572,323,224,303,304,2,417,567,309,404,414,599,313,315,224];
 	export default {
 		data() {
 			return {
@@ -26,7 +26,8 @@
 			}
 		},
 		components:{searchView,swiperView,groomView,goodsView,shareView},
-		onLoad(e) {
+		onLoad(e) {},
+		onShow() {
 			this.getData();
 		},
 		methods: {
@@ -39,15 +40,15 @@
 					url: t.$serverUrl + '/byclass',
 					data: { 
 						appkey: t.$appkey,
-						classid: searcharr[this.random(1,10)],
-						start: 34,
-						num: 20
+						classid: searcharr[this.random(1,20)],
+						start: 37,
+						num: 20,
 					},
 					success: (ret) => {
 						const data = ret.data.result.list;
 						t.lists = data;
 						uni.hideLoading();
-						t.isShow = !t.isShow;
+						t.isShow = 1;
 					}
 				});
 			},
