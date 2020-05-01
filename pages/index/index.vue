@@ -10,6 +10,12 @@
 			<contactView></contactView>
 			<!-- #endif -->
 		</view>
+		<!-- #ifdef MP-TOUTIAO -->
+		<view v-show="!isShow" class="toutao-icon">
+			<image :src="require('../../static/today-icon.gif')" mode="aspectFill"></image>
+		</view>
+		<!-- #endif -->
+		
 	</view>
 </template>
 
@@ -39,9 +45,6 @@
 		methods: {
 			getData(e) {
 				var t = this;
-				uni.showLoading({
-					title: '加载中'
-				});
 				uni.request({
 					url: t.$serverUrl + '/byclass',
 					data: { 
@@ -53,7 +56,6 @@
 					success: (ret) => {
 						const data = ret.data.result.list;
 						t.lists = data;
-						uni.hideLoading();
 						uni.stopPullDownRefresh();
 						t.isShow = 1;
 					}

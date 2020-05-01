@@ -36,8 +36,8 @@
 		padding: 24rpx 0;
 		border-bottom: 2rpx solid rgba(0,0,0,.06);
 		image {
-			width: 198rpx;
-			height: 172rpx;
+			width: 236rpx;
+			height: 192rpx;
 			margin-right: 24rpx;
 			border-radius: 12rpx;
 			flex-shrink: 0;

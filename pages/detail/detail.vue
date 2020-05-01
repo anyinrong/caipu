@@ -55,7 +55,7 @@
 			</view>
 			<!-- #ifdef MP-TOUTIAO -->
 			<view v-if="!adMoreShow">
-			  <ad type="lImg rImg" scale="140 140"
+			  <ad type="video large lImg" scale="90 90 140"
 					unit-id="9f4d45cl8h49prqdnd"
 					@close="adcloseMore"
 			  ></ad>
@@ -73,6 +73,11 @@
 			</view>
 			<!-- #endif -->
 		</view>
+		<!-- #ifdef MP-TOUTIAO -->
+		<view v-show="!isShow" class="toutao-icon">
+			<image :src="require('../../static/today-icon.gif')" mode="aspectFill"></image>
+		</view>
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -107,9 +112,6 @@
 		methods: {
 			getData (id) {
 				var t = this;
-				uni.showLoading({
-					title: "加载中"
-				});
 				uni.request({
 					url: t.$serverUrl + '/detail',
 					data: { 
@@ -119,7 +121,6 @@
 					success: (ret) => {
 						const data = ret.data.result;
 						t.detail = data;
-						uni.hideLoading();
 						t.isShow = !t.isShow;
 						t.getCorrelation();
 					}

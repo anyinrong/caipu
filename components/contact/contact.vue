@@ -14,7 +14,7 @@
 	.contact {
 		.contact-btn {
 			position: fixed;
-			bottom: 20%;
+			bottom: 21%;
 			right: 24rpx;
 			z-index: 999999;
 			width: 88rpx;

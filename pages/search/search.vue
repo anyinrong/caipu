@@ -23,13 +23,28 @@
 				</view>
 			</view>
 			<view class="list" v-else>
-				<goodsItemView v-for="item in lists" :key='item.classid' :items='item'></goodsItemView>
+				 <block v-for="(item,index) in lists" :key="index">
+				        <goodsItemView :items='item'></goodsItemView>
+						<!-- #ifdef MP-TOUTIAO -->
+						<template v-if="(index+1)%5==0">
+							<ad type="lImg" scale="110"
+								unit-id="9f4d45cl8h49prqdnd"
+								@close="adcloseMore"
+							></ad>
+						</template>
+						<!-- #endif -->
+				 </block>
 				<view class="cue-text" v-if="lists.length==0">
 					- - 暂无相关数据 - -
 				</view>
 			</view>
 			<shareView></shareView>
 		</view>
+		<!-- #ifdef MP-TOUTIAO -->
+		<view v-show="!hidden" class="toutao-icon">
+			<image :src="require('../../static/today-icon.gif')" mode="aspectFill"></image>
+		</view>
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -69,9 +84,6 @@
 		},	
 		methods: {
 			onReachBottomData (e) {
-				uni.showLoading({
-					title: '加载中'
-				});
 				const t = this;
 				uni.request({
 					url: t.$serverUrl + '/byclass',
@@ -82,7 +94,6 @@
 						num: 20
 					},
 					success: (ret) => {
-						uni.hideLoading();
 						t.hidden = 1;
 						const data = ret.data.result;
 						if(data !== '' && data.list.length > 0) {

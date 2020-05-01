@@ -28,6 +28,11 @@
 				- - 暂无相关数据 - -
 			</view>
 		</view>
+		<!-- #ifdef MP-TOUTIAO -->
+		<view v-show="!isShow" class="toutao-icon">
+			<image :src="require('../../static/today-icon.gif')" mode="aspectFill"></image>
+		</view>
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -56,9 +61,6 @@
 		methods: {
 			getData (e) {
 				var t = this;
-				uni.showLoading({
-					title: '加载中'
-				});
 				uni.request({
 					url: t.$serverUrl + '/class',
 					data: { 
@@ -79,7 +81,6 @@
 						});
 						t.items = t.lists[t.index].list;
 						// #endif
-						uni.hideLoading();
 						t.isShow = !t.isShow;
 					}
 				});

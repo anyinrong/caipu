@@ -32,6 +32,19 @@
 		background-color: rgba(0,0,0,0.6)!important;
 	}
 	
+	.toutao-icon {
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.toutao-icon image {
+		width: 260rpx;
+		height: 56rpx;
+	}
+	
 	.share .share-btn {
 		border: none;
 	}
