@@ -80,6 +80,9 @@
 		onReachBottom(e) {
 			if(this.classid == '') return;
 			this.start += 20;
+			uni.showLoading({
+				title: '加载中'
+			});
 			this.onReachBottomData();
 		},	
 		methods: {
@@ -96,6 +99,7 @@
 					success: (ret) => {
 						t.hidden = 1;
 						const data = ret.data.result;
+						uni.hideLoading();
 						if(data !== '' && data.list.length > 0) {
 							t.lists = t.lists.concat(data.list)
 						} else if(data !== '' && t.lists.length == 0) {

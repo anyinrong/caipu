@@ -50,11 +50,11 @@
 		justify-content: space-between;
 		align-items: center;
 		margin: 0 24rpx 24rpx;
-		font-size: 32rpx;
+		font-size: 36rpx;
 		color: #333333;
 		.groom-more {
 			color: #999999;
-			font-size: 28rpx;
+			font-size: 30rpx;
 		}
 	}
 	.groom {
